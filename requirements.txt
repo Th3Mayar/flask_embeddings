@@ -1,0 +1,4 @@
+Flask
+gensim
+psycopg2
+python-dotenv
