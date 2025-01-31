@@ -24,7 +24,7 @@ def recommend():
         user=os.getenv("USER"),
         password=os.getenv("PASSWORD"),
         host=os.getenv("HOST"),
-        port=os.getenv("PORT") 
+        port=int(os.getenv("DB_PORT", 5432))
     )
 
     # Create a cursor object using the connection
