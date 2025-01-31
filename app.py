@@ -19,13 +19,16 @@ def recommend():
     in JSON format.
     """
 
+    port = int(os.getenv("PORT", 5432)) # Get the port from the environment variable or use 5432 as default
+    
     connection = psycopg2.connect(
         dbname=os.getenv("DB_NAME"),
         user=os.getenv("USER"),
         password=os.getenv("PASSWORD"),
         host=os.getenv("HOST"),
-        port=os.getenv("PORT")
     )
+
+    app.run(host="0.0.0.0", port=port, debug=True)
 
     # Create a cursor object using the connection
     cursor = connection.cursor()
