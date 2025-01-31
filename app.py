@@ -18,17 +18,14 @@ def recommend():
     It then uses a pre-trained word2vec model to find similar products for each product ID and returns the recommendations
     in JSON format.
     """
-
-    port = int(os.getenv("PORT", 5432)) # Get the port from the environment variable or use 5432 as default
     
     connection = psycopg2.connect(
         dbname=os.getenv("DB_NAME"),
         user=os.getenv("USER"),
         password=os.getenv("PASSWORD"),
         host=os.getenv("HOST"),
+        port=os.getenv("PORT") 
     )
-
-    app.run(host="0.0.0.0", port=port, debug=True)
 
     # Create a cursor object using the connection
     cursor = connection.cursor()
@@ -67,4 +64,5 @@ def recommend():
     return jsonify(recommendations)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+     port = int(os.getenv("PORT_APP", 5000))  # Use PORT environment variable if it exists
+     app.run(host="0.0.0.0", port=port, debug=True)
